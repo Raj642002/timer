@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #clock{
+            height: 100px;
+            width:  250px;
+            
+               color: rgb(37, 39, 36);
+             font-size: 28px;
+              margin-top: 80px;
+              margin-left: 50px;
+              padding-top: 120%;
+              padding-left: 40%;
+              padding-top: 50px;
+              position: relative;
+              top : 20vh;
+
+        }
+        h1{
+            margin-left: 40%;
+            font-size: larger;
+            color: rgb(62, 47, 47);
+        }
+        #start{
+            position: relative;
+            left: 110vh;
+            top: 120px;
+            background-color: aqua;
+        }
+        #pause{
+            position: relative;
+            left: 130vh;
+            top: 120px;
+            background-color: aqua;
+        }
+        body{
+            height: 50vh;
+            width: 50vw;
+            background-image: url(clockimage.avif);
+            background-repeat: no-repeat;
+            background-size: 100% 220%;
+            
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+    <h1>  Time and Date  </h1>
+     <div id="clock">
+            
+     </div>
+     <audio id="bg-music" loop autoplay>
+        <source src="ticking-clock-sound-effect-1-mp3-edition-264451.mp3" type="audio/mp3">
+     </audio>
+     <button id="start" onclick="ch()">show</button>
+     <button id="pause" onclick="refersh()">refresh</button>
+    
+     
+    <script>
+        function ch() {
+
+            let d1 = document.getElementById("clock");
+            let a = new Date();
+            let h = a.getHours();
+            let m = a.getMinutes();
+            let s = a.getSeconds();
+            let d = a.toDateString(); // Full date
+
+            // Format time properly (Adding leading zeros)
+           // h = h < 10 ? "0" + h : h;
+            //m = m < 10 ? "0" + m : m;
+            //s = s < 10 ? "0" + s : s;
+
+            d1.innerHTML = `${h}:${m}:${s} <br> ${d}`;
+            playmusic();
+            setInterval(ch, 1000);
+        }
+     let music=document.getElementById("bg-music");
+     function playmusic(){
+         music.play();
+     }
+     function pausemusic(){
+        music.pause();
+     }
+        // Optional: Auto-update every second
+         function refersh(){
+            document.getElementById("clock").innerHTML="";
+            //clearInterval(setInterval(ch, 1000));
+            setInterval(ch, null);
+         pausemusic();
+         }
+    </script>
+</body>
+</html>
